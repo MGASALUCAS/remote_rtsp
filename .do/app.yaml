@@ -3,7 +3,7 @@ region: nyc
 services:
 - name: web
   github:
-    repo: your-username/your-repo-name
+    repo: MGASALUCAS/remote_rtsp
     branch: main
     deploy_on_push: true
   run_command: gunicorn --bind 0.0.0.0:$PORT --workers 2 --threads 2 --timeout 120 app:app
@@ -13,7 +13,7 @@ services:
   http_port: 8080
   health_check:
     http_path: /health
-    initial_delay_seconds: 10
+    initial_delay_seconds: 30
     period_seconds: 10
     timeout_seconds: 5
     success_threshold: 1

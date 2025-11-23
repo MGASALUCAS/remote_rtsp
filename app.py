@@ -1,4 +1,4 @@
-from flask import Flask, Response, request, render_template_string
+from flask import Flask, Response, request, render_template_string, jsonify
 import os
 import time
 
@@ -127,7 +127,7 @@ def stream(camera_id):
 
 @app.route("/health")
 def health():
-    return {"status": "ok"}
+    return jsonify({"status": "ok"}), 200
 
 
 if __name__ == "__main__":
