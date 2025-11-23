@@ -1,4 +1,5 @@
 from flask import Flask, Response, request, render_template_string
+import os
 import time
 
 app = Flask(__name__)
@@ -130,5 +131,8 @@ def health():
 
 
 if __name__ == "__main__":
-    # open to world for testing (put behind nginx in real use)
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    # Use PORT environment variable if available (for DigitalOcean), otherwise default to 5000
+    port = int(os.environ.get("PORT", 5000))
+    # Only enable debug mode if not in production
+    debug = os.environ.get("FLASK_ENV") != "production"
+    app.run(host="0.0.0.0", port=port, debug=debug)
