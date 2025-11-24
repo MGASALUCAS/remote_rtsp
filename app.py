@@ -6,6 +6,8 @@ app = Flask(__name__)
 
 
 
+
+
 # In-memory storage for latest frame per camera_id
 latest_frames = {}  # {camera_id: bytes}
 
