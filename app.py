@@ -12,7 +12,7 @@ INDEX_HTML = """
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Mgasa Cloud Viewer</title>
+  <title>Test Viewer</title>
   <style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -54,7 +54,7 @@ INDEX_HTML = """
   </style>
 </head>
 <body>
-  <h1>Mgasa RTSP Cloud Viewer</h1>
+  <h1>Mgasa RTSP Cloud Test Viewer</h1>
   <div class="info">
     Default camera ID is <code>cam1</code>.<br>
     Make sure your agent is pushing frames to <code>/push/cam1</code>.
