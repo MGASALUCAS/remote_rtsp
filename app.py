@@ -8,6 +8,8 @@ app = Flask(__name__)
 latest_frames = {}  # {camera_id: bytes}
 
 
+
+
 INDEX_HTML = """
 <!DOCTYPE html>
 <html>
