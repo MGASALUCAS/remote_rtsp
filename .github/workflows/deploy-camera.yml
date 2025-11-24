@@ -1,0 +1,40 @@
+name: Deploy Camera App to Droplet
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH to camera droplet
+        uses: appleboy/ssh-action@v1.2.3
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: ${{ secrets.DO_USER }}
+          key: ${{ secrets.DO_SSH_KEY }}
+          port: 22
+          script: |
+            set -e
+
+            cd /srv/camera
+
+            echo "[deploy] Fetching latest code from GitHub..."
+            git fetch origin
+            git reset --hard origin/main
+
+            echo "[deploy] Updating Python dependencies..."
+            /srv/camera/venv/bin/pip install --upgrade pip
+            /srv/camera/venv/bin/pip install -r requirements.txt
+
+            echo "[deploy] Restarting camera service..."
+            systemctl daemon-reload
+            systemctl restart camera
+
+            echo "[deploy] Done. Current service status:"
+            systemctl status camera --no-pager
